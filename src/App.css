@@ -1,0 +1,72 @@
+html,
+body {
+  overflow-x: hidden;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #afb2bf;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 3px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #000814;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #afb2bf;
+  border-radius: 10px;
+  visibility: hidden;
+}
+
+*:active::-webkit-scrollbar-thumb,
+*:focus::-webkit-scrollbar-thumb,
+*:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+
+.code-border {
+  background: linear-gradient(111.93deg, #1f20263d -1.4%, #1a1b2161 104.96%);
+  border: 2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(to right bottom, #ffffff38, #ffffff00);
+}
+
+.codeblock1 {
+  background: linear-gradient(
+    123.77deg,
+    #e22bb4 -6.46%,
+    rgb(255, 0, 0) 59.04%,
+    #f8f8ff 124.53%
+  );
+}
+
+.codeblock1,
+.codeblock2 {
+  border-radius: 100%;
+  -webkit-filter: blur(34px);
+  filter: blur(34px);
+  height: 257.05px;
+  left: calc(50% - 263.005px);
+  opacity: 0.2;
+  top: calc(50% - 175.995px);
+  -webkit-transform: matrix(1, 0, -0.03, 1, 0, 0);
+  transform: matrix(1, 0, -0.03, 1, 0, 0);
+  width: 372.95px;
+}
+
+.codeblock2 {
+  background: linear-gradient(
+    118.19deg,
+    #1fa2ff -3.62%,
+    #12d8fa 50.44%,
+    #a6ffcb 104.51%
+  );
+  position: absolute;
+}

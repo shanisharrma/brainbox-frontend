@@ -12,14 +12,14 @@ export default {
       black: "#000",
       transparent: "#ffffff00",
       "rich-black": {
-        5: "#E6E7E9", // Lightest shade
-        25: "#B8BBC0",
-        50: "#8A8F98",
-        100: "#5C626F",
-        200: "#3E4049",
+        5: "#F2F2F2", // Lightest shade
+        25: "#E6E7E9",
+        50: "#B8BBC0",
+        100: "#A8A8A8",
+        200: "#3A3D44",
         300: "#35363E",
         400: "#2C2D34",
-        500: "#24252B",
+        500: "#2C2E33",
         600: "#1F2026",
         700: "#1B1C22",
         800: "#1A1B21",
