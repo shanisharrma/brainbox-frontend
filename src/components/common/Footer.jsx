@@ -2,7 +2,7 @@ import { FooterLink2 } from "../../data/footer-links";
 import { Link } from "react-router-dom";
 
 // Images
-import Logo from "../../assets/Logo/brainbox.svg";
+import Logo from "../../assets/Logo/brainbox-light.svg";
 
 // Icons
 import { FaFacebook, FaGoogle, FaTwitter, FaYoutube } from "react-icons/fa";

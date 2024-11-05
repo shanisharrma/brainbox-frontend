@@ -6,7 +6,7 @@ import SignupForm from "./SignupForm";
 
 const Template = ({ title, desc1, desc2, image, formType, setIsLoggedIn }) => {
   return (
-    <div className="w-11/12 max-w-maxContent mx-auto flex justify-between py-12 gap-x-12 gap-y-0">
+    <div className="w-11/12 max-w-maxContent mx-auto flex justify-between py-12 gap-x-12 gap-y-0 mt-10">
       <div className="w-11/12 max-w-[450px] mx-auto md:mx-0">
         <h1 className="text-rich-black-5 text-3xl font-semibold leading-[2.375rem]">
           {title}
