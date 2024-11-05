@@ -3,9 +3,14 @@ import { FaArrowRight } from "react-icons/fa";
 import {
   CodeBlocks,
   CTAButton,
+  ExploreMore,
   HighlightText,
+  InstructorSection,
+  LearningLanguageSection,
+  TimelineSection,
 } from "../components/core/HomePage";
 import Banner from "../assets/Images/banner.mp4";
+import { Footer } from "../components/common";
 
 const Home = () => {
   return (
@@ -33,10 +38,10 @@ const Home = () => {
           <CTAButton linkTo="/signup" active={true}>
             Learn More
           </CTAButton>
-          <CTAButton>Book a Demo</CTAButton>
+          <CTAButton linkTo="/contact">Book a Demo</CTAButton>
         </div>
 
-        <div className="shadow-[10px_-5px_50px_-5px] shadow-blue-500 mx-3 my-12">
+        <div className="shadow-[10px_-5px_50px_-5px] shadow-blue-500 mx-3 my-8">
           <video
             muted
             loop
@@ -124,11 +129,65 @@ const Home = () => {
             backgroundGradient={"codeblock2"}
           />
         </div>
+
+        {/* Tabs Section */}
+        <ExploreMore />
       </div>
       {/* Section 2 */}
+      <div className="bg-pure-greys-5 text-rich-black-700">
+        <div className="homepage-bg h-[333px]">
+          <div className="w-11/12 max-w-maxContent flex flex-col items-center gap-5 mx-auto">
+            <div className="lg:h-[150px]"></div>
+            <div className="flex flex-row gap-7 my-10 text-white">
+              <CTAButton linkTo={"/catalog"} active={true}>
+                <div className="flex items-center gap-3">
+                  Explore full catalog <FaArrowRight />
+                </div>
+              </CTAButton>
+              <CTAButton linkTo={"/login"} active={false}>
+                Learn More
+              </CTAButton>
+            </div>
+          </div>
+        </div>
+
+        <div className="mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7">
+          <div className="flex flex-row justify-between gap-5 mb-10 mt-20">
+            <div className="w-[45%] text-4xl font-semibold">
+              Get the skills you need for a{" "}
+              <HighlightText text={"job that is in demand."} />
+            </div>
+            <div className="w-[40%] flex flex-col gap-10 items-start">
+              <p className="text-base">
+                The modern BrainBox is the dictates its own terms. Today, to be
+                a competitive specialist requires more than professional skills.
+              </p>
+              <CTAButton linkTo={"/signup"} active={true}>
+                Learn More
+              </CTAButton>
+            </div>
+          </div>
+          <TimelineSection />
+
+          <LearningLanguageSection />
+        </div>
+      </div>
       {/* Section 3 */}
-      {/* Section 4 */}
+      <div className="w-11/12 max-w-maxContent flex flex-col gap-7 items-center py-10 text-white mx-auto">
+        <div className="w-full my-12">
+          <InstructorSection />
+        </div>
+
+        {/* Reviews */}
+        <div className="flex flex-col items-center">
+          <h2 className="text-center text-4xl font-semibold mt-10">
+            Reviews from other learners
+          </h2>
+          {/* Review slider */}
+        </div>
+      </div>
       {/* Footer */}
+      <Footer />
     </div>
   );
 };

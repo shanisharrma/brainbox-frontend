@@ -20,7 +20,7 @@ const CodeBlocks = ({
       {/* Section 1 */}
       <div className="w-[100%] lg:w-[50%] flex flex-col gap-8">
         {heading}
-        <div className="text-rich-black-200 font-bold">{subheading}</div>
+        <div className="text-rich-black-100 font-medium">{subheading}</div>
         <div className="flex gap-7 mt-7">
           <CTAButton active={ctaBtn1.active} linkTo={ctaBtn1.linkTo}>
             <div className="flex gap-2 items-center">
