@@ -1,8 +1,9 @@
 import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { useNavigate } from "react-router-dom";
 import RoleSelector from "./RoleSelector";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { register } from "../../../services/operations/authAPI";
 
 const SignupForm = () => {
   const defaultSignupForm = {
@@ -13,13 +14,14 @@ const SignupForm = () => {
     password: "",
     confirmPassword: "",
     role: "student",
+    consent: "true",
   };
+  const dispatch = useDispatch();
+
   const [signupForm, setSignupForm] = useState(defaultSignupForm);
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const navigate = useNavigate();
 
   const signupFormChange = (e) => {
     const { name, value } = e.target;
@@ -44,10 +46,8 @@ const SignupForm = () => {
       toast.error("Password do not match.");
       return;
     }
+    dispatch(register(signupForm));
     setSignupForm(defaultSignupForm);
-    // setIsLoggedIn(true);
-    toast.success("Account created.");
-    navigate("/dashboard");
   };
 
   return (
@@ -63,7 +63,7 @@ const SignupForm = () => {
               htmlFor="firstName"
               className="block text-rich-black-100 w-full text-[0.875rem] leading-5 my-1"
             >
-              First Name <sup className="text-pink-200">*</sup>
+              First Name <sup className="text-crimsonRed-50">*</sup>
             </label>
             <input
               type="text"
@@ -81,7 +81,7 @@ const SignupForm = () => {
               htmlFor="lastName"
               className="block text-rich-black-100 w-full text-[0.875rem] leading-5 my-1"
             >
-              Last Name <sup className="text-pink-200">*</sup>
+              Last Name <sup className="text-crimsonRed-50">*</sup>
             </label>
             <input
               type="text"
@@ -101,7 +101,7 @@ const SignupForm = () => {
             htmlFor="email"
             className="block text-rich-black-100 w-full text-[0.875rem] leading-5 my-1"
           >
-            Email Address <sup className="text-pink-200">*</sup>
+            Email Address <sup className="text-crimsonRed-50">*</sup>
           </label>
           <input
             type="email"
@@ -120,7 +120,7 @@ const SignupForm = () => {
             htmlFor="phoneNumber"
             className="block text-rich-black-100 w-full text-[0.875rem] leading-5 my-1"
           >
-            Phone Number <sup className="text-pink-200">*</sup>
+            Phone Number <sup className="text-crimsonRed-50">*</sup>
           </label>
           <input
             type="text"
@@ -140,7 +140,7 @@ const SignupForm = () => {
               htmlFor="password"
               className="block text-rich-black-100 w-full text-[0.875rem] leading-5 my-1"
             >
-              Create Password<sup className="text-pink-200">*</sup>
+              Create Password <sup className="text-crimsonRed-50">*</sup>
             </label>
             <input
               type={showPassword ? "text" : "password"}

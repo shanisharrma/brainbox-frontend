@@ -1,7 +1,8 @@
 import { useState } from "react";
-import toast from "react-hot-toast";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { login } from "../../../services/operations/authAPI";
 
 const LoginForm = () => {
   const defaultLoginForm = { email: "", password: "" };
@@ -9,7 +10,7 @@ const LoginForm = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const loginFormChange = (e) => {
     const { name, value } = e.target;
@@ -22,9 +23,8 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    toast.success("Logged In");
-    navigate("/dashboard");
+    dispatch(login(loginForm));
+    setLoginForm(defaultLoginForm);
   };
 
   return (
@@ -75,7 +75,10 @@ const LoginForm = () => {
           )}
         </span>
       </div>
-      <Link to="/" className="text-blue-100 text-xs text-end -mt-3">
+      <Link
+        to="/forgot-password"
+        className="text-blue-100 text-xs text-end -mt-3"
+      >
         Forgot Password?
       </Link>
 
