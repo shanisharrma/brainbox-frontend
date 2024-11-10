@@ -42,6 +42,12 @@ apiClient.interceptors.response.use(
           "token",
           JSON.stringify(refreshResponse.data.accessToken)
         );
+
+        config.headers[
+          "Authorization"
+        ] = `Bearer ${refreshResponse.data.accessToken}`;
+        store.dispatch(setLoading(false));
+        return apiClient(config);
       } catch (error) {
         toast.error(error.refreshResponse.message);
         navigate("/login", {
@@ -49,10 +55,10 @@ apiClient.interceptors.response.use(
             redirectUrl: window.location.pathname,
           },
         });
+        store.dispatch(setLoading(false));
         return Promise.reject(error);
       }
     }
-    store.dispatch(setLoading(false));
     return Promise.reject(error);
   }
 );

@@ -17,3 +17,7 @@ export const profileEndpoints = {
 export const categories = {
   CATEGORIES_API: BASE_URL + "/categories",
 };
+
+export const contactUsEndpoints = {
+  CONTACT_US_API: BASE_URL + "/contact-us",
+};

@@ -3,10 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   signupData: null,
   loading: false,
-  token: localStorage.getItem("token")
-    ? JSON.parse(localStorage.getItem("token"))
-    : null,
-  isRefreshing: false,
+  token: null,
+  roles: [],
+  error: null,
 };
 
 export const authSlice = createSlice({
@@ -16,8 +15,8 @@ export const authSlice = createSlice({
     setToken(state, action) {
       state.token = action.payload;
     },
-    setIsRefreshing(state, action) {
-      state.isRefreshing = action.payload;
+    setRoles(state, action) {
+      state.roles = action.payload;
     },
     setLoading(state, action) {
       state.loading = action.payload;
@@ -25,11 +24,25 @@ export const authSlice = createSlice({
     setSignupData(state, action) {
       state.signupData = action.payload;
     },
+    setError(state, action) {
+      state.error = action.payload;
+    },
+    clearAuth(state) {
+      state.token = null;
+      state.roles = [];
+      state.signupData = null;
+      state.error = null;
+    },
   },
 });
 
-export const { setToken, setIsRefreshing, setLoading, setSignupData } =
-  authSlice.actions;
+export const {
+  setToken,
+  setLoading,
+  setSignupData,
+  setRoles,
+  clearAuth,
+  setError,
+} = authSlice.actions;
 export const selectToken = (state) => state.auth.token;
-export const selectIsRefreshing = (state) => state.auth.isRefreshing;
 export default authSlice.reducer;

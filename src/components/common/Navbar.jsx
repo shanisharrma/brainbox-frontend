@@ -14,6 +14,7 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.profile);
   const { totalItems } = useSelector((state) => state.cart);
   const location = useLocation();
+
   const matchRoute = (route) => {
     return matchPath({ path: route }, location.pathname);
   };
@@ -88,10 +89,14 @@ const Navbar = () => {
 
         {/* Action button (Login, Signup, dashboard) */}
         <div className="flex gap-x-4 items-center">
-          {user && !user.roles.some((role) => role.role === "instructor") && (
+          {user && user?.roles.some((role) => role.role === "student") && (
             <NavLink to="/dashboard/cart" className="relative">
-              <AiOutlineShoppingCart />
-              {totalItems > 0 && <span>{totalItems}</span>}
+              <AiOutlineShoppingCart className="text-2xl text-rich-black-50" />
+              {totalItems > 0 && (
+                <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-rich-black-300 text-center text-xs font-bold text-yellow-100">
+                  {totalItems}
+                </span>
+              )}
             </NavLink>
           )}
 

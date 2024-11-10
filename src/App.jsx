@@ -1,16 +1,21 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import {
+  About,
   AccountConfirmation,
+  Contact,
+  Dashboard,
+  Error,
   ForgotPassword,
   Home,
   Login,
-  MyProfile,
   ResetPassword,
   Signup,
 } from "./pages";
 import { Navbar } from "./components/common";
 import { setNavigate } from "./hooks/setNavigate";
+import { ProtectedRoute, PublicRoute } from "./components/core/Auth";
+import { MyProfile } from "./components/core/Dashboard";
 
 function App() {
   const navigate = useNavigate();
@@ -20,19 +25,67 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+
+        <Route
+          path="/login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <PublicRoute>
+              <Signup />
+            </PublicRoute>
+          }
+        />
         <Route
           path="/account-confirmation/"
-          element={<AccountConfirmation />}
+          element={
+            <PublicRoute>
+              <AccountConfirmation />
+            </PublicRoute>
+          }
         />
         <Route
           path="/account-confirmation/:token"
-          element={<AccountConfirmation />}
+          element={
+            <PublicRoute>
+              <AccountConfirmation />
+            </PublicRoute>
+          }
         />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password/:token" element={<ResetPassword />} />
-        <Route path="/dashboard/my-profile" element={<MyProfile />} />
+        <Route
+          path="/forgot-password"
+          element={
+            <PublicRoute>
+              <ForgotPassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/reset-password/:token"
+          element={
+            <PublicRoute>
+              <ResetPassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        >
+          <Route path="/dashboard/my-profile" element={<MyProfile />} />
+        </Route>
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

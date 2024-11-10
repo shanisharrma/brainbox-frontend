@@ -3,10 +3,15 @@ import {
   setLoading,
   setToken,
   setSignupData,
+  setRoles,
+  clearAuth,
 } from "../../store/slices/authSlice";
 import { apiConnector } from "../apiConnector";
 import { authEndpoints } from "../apis";
 import { navigate } from "../../hooks/setNavigate";
+import { setUser } from "../../store/slices/profileSlice";
+import { decodeToken } from "../../utils/authUtils";
+import { persistor } from "../../store/store";
 
 const {
   REGISTER_API,
@@ -37,8 +42,6 @@ export const register = (
       if (!response.success) {
         throw new Error(response.message);
       }
-
-      console.log("signup response ===>", response);
 
       toast.success(response.message);
 
@@ -72,11 +75,13 @@ export const login = ({ email, password }) => {
       // // * setting the token value
       dispatch(setToken(response.data.accessToken));
 
-      // * storing the token in the localStorage
-      localStorage.setItem("token", JSON.stringify(response.data.accessToken));
+      // * get and set roles from the token
+      const { roles } = decodeToken(response.data.accessToken);
+      dispatch(setRoles(roles));
+
       navigate("/dashboard/my-profile");
     } catch (error) {
-      toast.error(error.response.message);
+      toast.error(error.response.data.message);
       navigate("/login");
     }
     dispatch(setLoading(false));
@@ -141,13 +146,17 @@ export const logout = (token) => {
       }
 
       toast.success(response.message);
-      dispatch(setToken(null));
-      localStorage.removeItem("token");
+
+      dispatch(clearAuth());
+      dispatch(setUser(null));
+
+      persistor.purge();
+
       navigate("/login");
     } catch (error) {
-      console.log("error ->", error);
       toast.error(error.response.message);
     }
+    dispatch(setLoading(false));
   };
 };
 

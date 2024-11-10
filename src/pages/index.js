@@ -6,6 +6,9 @@ import ForgotPassword from "./ForgotPassword";
 import AccountConfirmation from "./AccountConfirmation";
 import ResetPassword from "./ResetPassword";
 import MyProfile from "./MyProfile";
+import About from "./About";
+import Contact from "./Contact";
+import Dashboard from "./Dashboard";
 
 export {
   Home,
@@ -16,4 +19,7 @@ export {
   AccountConfirmation,
   ResetPassword,
   MyProfile,
+  About,
+  Contact,
+  Dashboard,
 };

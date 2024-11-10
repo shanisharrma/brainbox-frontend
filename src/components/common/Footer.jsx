@@ -172,7 +172,7 @@ const Footer = () => {
           </div>
 
           <div className="text-center">
-            Made with ❤️ ShaniSharrma © 2024 BrainBox
+            Made with ❤️ By ShaniSharrma © 2024 BrainBox
           </div>
         </div>
       </div>
