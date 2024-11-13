@@ -52,14 +52,13 @@ const Navbar = () => {
                       <p>{link.title}</p> <IoIosArrowDown />
                       <div className="invisible absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[10%] flex flex-col rounded-lg bg-rich-black-5 p-4 text-rich-black-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 w-[300px] z-10">
                         <div className="absolute left-[50%] top-0 translate-y-[-50%] translate-x-[80%] h-6 w-6 rotate-45 rounded bg-rich-black-5 z-0"></div>
-
                         {subLinks && subLinks.length ? (
-                          subLinks.map((subLink) => (
+                          subLinks.map((subLink, index) => (
                             <NavLink
                               to={`/catalog/${subLink.name
                                 .replace(" ", "-")
                                 .toLowerCase()}`}
-                              key={subLink.id}
+                              key={index}
                             >
                               <p className="p-4 hover:bg-rich-black-25 rounded-md">
                                 {subLink.name}

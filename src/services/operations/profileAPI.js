@@ -17,9 +17,9 @@ export const getUserDetails = (token) => {
       if (!response.success) {
         throw new Error(response.message);
       }
-      dispatch(setUser(response.data.user));
+      dispatch(setUser(response.data));
     } catch (error) {
-      toast.error(error.response.message);
+      toast.error(error.response.data.message);
       navigate("/login");
     }
     dispatch(setLoading(false));

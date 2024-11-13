@@ -27,7 +27,9 @@ const ResetPassword = () => {
   const handleOnSubmitResetPassword = (e) => {
     e.preventDefault();
     const token = location.pathname.split("/").at(-1);
-    dispatch(resetPassword(formData, token));
+    dispatch(resetPassword(formData, token)).then(() => {
+      setFromData({ password: "", confirmPassword: "" });
+    });
   };
 
   return (

@@ -1,0 +1,29 @@
+/* eslint-disable react/prop-types */
+import IconBtn from "./IconBtn";
+
+export default function ConfirmationModal({ modalData }) {
+  return (
+    <div className="fixed inset-0 z-[1000] !mt-0 grid place-items-center overflow-auto bg-white bg-opacity-10 backdrop-blur-sm">
+      <div className="w-11/12 max-w-[350px] rounded-lg border border-rich-black-200 bg-rich-black-500 p-6">
+        <p className="text-2xl font-semibold text-rich-black-5">
+          {modalData?.text1}
+        </p>
+        <p className="mt-3 mb-5 leading-6 text-rich-black-100">
+          {modalData?.text2}
+        </p>
+        <div className="flex items-center gap-x-4">
+          <IconBtn
+            onclick={modalData?.btn1Handler}
+            text={modalData?.btn1Text}
+          />
+          <button
+            className="cursor-pointer rounded-md bg-rich-black-100 py-[8px] px-[20px] font-semibold text-rich-black-900"
+            onClick={modalData?.btn2Handler}
+          >
+            {modalData?.btn2Text}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

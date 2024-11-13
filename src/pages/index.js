@@ -5,7 +5,6 @@ import Error from "./Error";
 import ForgotPassword from "./ForgotPassword";
 import AccountConfirmation from "./AccountConfirmation";
 import ResetPassword from "./ResetPassword";
-import MyProfile from "./MyProfile";
 import About from "./About";
 import Contact from "./Contact";
 import Dashboard from "./Dashboard";
@@ -18,7 +17,6 @@ export {
   ForgotPassword,
   AccountConfirmation,
   ResetPassword,
-  MyProfile,
   About,
   Contact,
   Dashboard,

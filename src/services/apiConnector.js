@@ -37,12 +37,6 @@ apiClient.interceptors.response.use(
         // * update the state of token
         store.dispatch(setToken(refreshResponse.data.accessToken));
 
-        // * updating the value of token in localStorage
-        localStorage.setItem(
-          "token",
-          JSON.stringify(refreshResponse.data.accessToken)
-        );
-
         config.headers[
           "Authorization"
         ] = `Bearer ${refreshResponse.data.accessToken}`;

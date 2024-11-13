@@ -2,7 +2,6 @@ import toast from "react-hot-toast";
 import {
   setLoading,
   setToken,
-  setSignupData,
   setRoles,
   clearAuth,
 } from "../../store/slices/authSlice";
@@ -22,11 +21,17 @@ const {
   RESET_PASSWORD_API,
 } = authEndpoints;
 
-export const register = (
-  { firstName, lastName, email, phoneNumber, password, role, consent },
-  navigate
-) => {
+export const register = ({
+  firstName,
+  lastName,
+  email,
+  phoneNumber,
+  password,
+  role,
+  consent,
+}) => {
   return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
     dispatch(setLoading(true));
     try {
       const response = await apiConnector("POST", REGISTER_API, {
@@ -45,20 +50,21 @@ export const register = (
 
       toast.success(response.message);
 
-      // * adding the register response to signupData
-      dispatch(setSignupData(response.data));
-
-      navigate(`/account-confirmation`);
+      navigate(
+        `/account-confirmation/${response.data.accountConfirmation.token}`
+      );
     } catch (error) {
-      toast.error(error.response.message);
+      toast.error(error.response.data.message);
       navigate("/signup");
     }
+    toast.dismiss(toastId);
     dispatch(setLoading(false));
   };
 };
 
 export const login = ({ email, password }) => {
   return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
     dispatch(setLoading(true));
     try {
       const response = await apiConnector("POST", LOGIN_API, {
@@ -84,12 +90,14 @@ export const login = ({ email, password }) => {
       toast.error(error.response.data.message);
       navigate("/login");
     }
+    toast.dismiss(toastId);
     dispatch(setLoading(false));
   };
 };
 
 export const accountVerification = (token, code) => {
   return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
     dispatch(setLoading(true));
     try {
       const response = await apiConnector(
@@ -105,37 +113,46 @@ export const accountVerification = (token, code) => {
       toast.success(response.message);
       navigate("/login");
     } catch (error) {
-      toast.error(error.response.message);
+      toast.error(error.response.data.message);
       navigate("/login");
     }
+    toast.dismiss(toastId);
     dispatch(setLoading(false));
   };
 };
 
-export const requestAccountVerification = (email) => {
+export const requestAccountVerification = (email, token) => {
   return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
     dispatch(setLoading(true));
     try {
-      const response = await apiConnector("POST", ACCOUNT_VERIFICATION_API, {
-        email,
-      });
+      const response = await apiConnector(
+        "PUT",
+        ACCOUNT_VERIFICATION_API,
+        {
+          email,
+        },
+        { Authorization: `Bearer ${token}` }
+      );
 
       if (!response.success) {
         throw new Error(response.message);
       }
 
       toast.success(response.message);
-      navigate(`/account-confirmation/${response.data.token}`);
+      navigate(`/account-confirmation`);
     } catch (error) {
-      toast.error(error.response.message);
+      toast.error(error.response.data.message);
       navigate("/dashboard/my-profile");
     }
+    toast.dismiss(toastId);
     dispatch(setLoading(false));
   };
 };
 
 export const logout = (token) => {
   return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
     dispatch(setLoading(true));
     try {
       const response = await apiConnector("POST", LOGOUT_API, null, {
@@ -154,14 +171,16 @@ export const logout = (token) => {
 
       navigate("/login");
     } catch (error) {
-      toast.error(error.response.message);
+      toast.error(error.response.data.message);
     }
+    toast.dismiss(toastId);
     dispatch(setLoading(false));
   };
 };
 
 export const forgotPassword = (email, setEmailSent) => {
   return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
     dispatch(setLoading(true));
     try {
       const response = await apiConnector("POST", FORGOT_PASSWORD_API, {
@@ -175,14 +194,16 @@ export const forgotPassword = (email, setEmailSent) => {
       toast.success(response.message);
       setEmailSent(true);
     } catch (error) {
-      toast.error(error.response.message);
+      toast.error(error.response.data.message);
     }
+    toast.dismiss(toastId);
     dispatch(setLoading(false));
   };
 };
 
 export const resetPassword = ({ password, confirmPassword }, token) => {
   return async (dispatch) => {
+    const toastId = toast.loading("Loading...");
     dispatch(setLoading(true));
     try {
       const response = await apiConnector(
@@ -197,8 +218,9 @@ export const resetPassword = ({ password, confirmPassword }, token) => {
 
       toast.success(response.message);
     } catch (error) {
-      toast.error(error.response.message);
+      toast.error(error.response.data.message);
     }
+    toast.dismiss(toastId);
     dispatch(setLoading(false));
   };
 };

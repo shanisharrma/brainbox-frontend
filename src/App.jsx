@@ -15,7 +15,7 @@ import {
 import { Navbar } from "./components/common";
 import { setNavigate } from "./hooks/setNavigate";
 import { ProtectedRoute, PublicRoute } from "./components/core/Auth";
-import { MyProfile } from "./components/core/Dashboard";
+import { MyProfile, Settings } from "./components/core/Dashboard";
 
 function App() {
   const navigate = useNavigate();
@@ -27,7 +27,10 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-
+        <Route
+          path="/account-confirmation/:token"
+          element={<AccountConfirmation />}
+        />
         <Route
           path="/login"
           element={
@@ -41,22 +44,6 @@ function App() {
           element={
             <PublicRoute>
               <Signup />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/account-confirmation/"
-          element={
-            <PublicRoute>
-              <AccountConfirmation />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/account-confirmation/:token"
-          element={
-            <PublicRoute>
-              <AccountConfirmation />
             </PublicRoute>
           }
         />
@@ -76,6 +63,15 @@ function App() {
             </PublicRoute>
           }
         />
+
+        <Route
+          path="/account-confirmation"
+          element={
+            <ProtectedRoute>
+              <AccountConfirmation />
+            </ProtectedRoute>
+          }
+        />
         <Route
           element={
             <ProtectedRoute>
@@ -84,6 +80,7 @@ function App() {
           }
         >
           <Route path="/dashboard/my-profile" element={<MyProfile />} />
+          <Route path="/dashboard/settings" element={<Settings />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>

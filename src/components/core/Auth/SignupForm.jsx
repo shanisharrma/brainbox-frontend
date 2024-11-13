@@ -4,12 +4,14 @@ import RoleSelector from "./RoleSelector";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { register } from "../../../services/operations/authAPI";
+import CountryCode from "../../../data/countrycode.json";
 
 const SignupForm = () => {
   const defaultSignupForm = {
     firstName: "",
     lastName: "",
     email: "",
+    countryCode: "",
     phoneNumber: "",
     password: "",
     confirmPassword: "",
@@ -46,6 +48,9 @@ const SignupForm = () => {
       toast.error("Password do not match.");
       return;
     }
+    const combinedNumber = `${signupForm.countryCode}${signupForm.phoneNumber}`;
+    signupForm.phoneNumber = combinedNumber;
+    delete signupForm.countryCode;
     dispatch(register(signupForm));
     setSignupForm(defaultSignupForm);
   };
@@ -115,23 +120,48 @@ const SignupForm = () => {
           />
         </div>
         {/* phone number */}
-        <div className="mb-3">
-          <label
-            htmlFor="phoneNumber"
-            className="block text-rich-black-100 w-full text-[0.875rem] leading-5 my-1"
-          >
-            Phone Number <sup className="text-crimsonRed-50">*</sup>
-          </label>
-          <input
-            type="text"
-            name="phoneNumber"
-            id="phoneNumber"
-            value={signupForm.phoneNumber}
-            onChange={signupFormChange}
-            placeholder="Enter phone number..."
-            required
-            className="bg-rich-black-300 rounded-lg text-rich-black-100 w-full p-3 border-b-[1px] border-b-rich-black-100 placeholder:text-rich-black-100"
-          />
+        <div className="mb-4">
+          <div className="mb-4">
+            <label
+              htmlFor="phoneNumber"
+              className="block text-rich-black-100 w-full text-[0.875rem] leading-5 my-1"
+            >
+              Phone Number <sup className="text-crimsonRed-50">*</sup>
+            </label>
+            <div className="flex flex-row gap-3 justify-between">
+              {/* dropdown */}
+              <select
+                className="bg-rich-black-300 rounded-lg text-rich-black-100 w-[15%] p-3 px-2 border-b-[1px] border-b-rich-black-100 placeholder:text-rich-black-100"
+                name="countryCode"
+                id="countryCode"
+                value={signupForm.countryCode}
+                onChange={signupFormChange}
+              >
+                {CountryCode.map((element, index) => (
+                  <option key={index} value={element.code}>
+                    {element.code} - {element.country}
+                  </option>
+                ))}
+              </select>
+
+              <input
+                type="tel"
+                name="phoneNumber"
+                id="phoneNumber"
+                placeholder="Enter phone number..."
+                className="bg-rich-black-300 rounded-lg text-rich-black-100 w-[85%] p-3 border-b-[1px] border-b-rich-black-100 placeholder:text-rich-black-100"
+                value={
+                  signupForm.phoneNumber
+                    ? signupForm.phoneNumber.replace(
+                        `${signupForm.countryCode} `,
+                        ""
+                      )
+                    : signupForm.phoneNumber
+                }
+                onChange={signupFormChange}
+              />
+            </div>
+          </div>
         </div>
         {/* createPassword and confirmPassword */}
         <div className="flex justify-between w-full gap-x-4">
