@@ -12,6 +12,7 @@ export const authEndpoints = {
 
 export const profileEndpoints = {
   PROFILE_API: BASE_URL + "/profile", // GET
+  ENROLLED_COURSES_API: BASE_URL + "/courses/enrolled", // GET
 };
 
 export const settingsEndpoints = {
@@ -25,4 +26,9 @@ export const categories = {
 
 export const contactUsEndpoints = {
   CONTACT_US_API: BASE_URL + "/contact-us",
+};
+
+export const courseEndpoints = {
+  TAUGHT_COURSES_API: BASE_URL + "/courses/taught", //GET
+  DELETE_COURSE_API: BASE_URL + "/course", //DELETE with courseId
 };

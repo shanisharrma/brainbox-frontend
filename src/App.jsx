@@ -15,7 +15,13 @@ import {
 import { Navbar } from "./components/common";
 import { setNavigate } from "./hooks/setNavigate";
 import { ProtectedRoute, PublicRoute } from "./components/core/Auth";
-import { MyProfile, Settings } from "./components/core/Dashboard";
+import {
+  Cart,
+  EnrolledCourses,
+  MyCourses,
+  MyProfile,
+  Settings,
+} from "./components/core/Dashboard";
 
 function App() {
   const navigate = useNavigate();
@@ -81,6 +87,30 @@ function App() {
         >
           <Route path="/dashboard/my-profile" element={<MyProfile />} />
           <Route path="/dashboard/settings" element={<Settings />} />
+          <Route
+            path="/dashboard/enrolled-courses"
+            element={
+              <ProtectedRoute requiredRoles={["student"]}>
+                <EnrolledCourses />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/cart"
+            element={
+              <ProtectedRoute requiredRoles={["student"]}>
+                <Cart />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/my-courses"
+            element={
+              <ProtectedRoute requiredRoles={["instructor"]}>
+                <MyCourses />
+              </ProtectedRoute>
+            }
+          />
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>

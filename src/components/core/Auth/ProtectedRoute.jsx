@@ -14,8 +14,12 @@ const ProtectedRoute = ({ children, requiredRoles }) => {
     }
 
     if (requiredRoles && !hasRequiredRoles(requiredRoles, roles)) {
-      navigate("/login");
       toast.error("Not Authorized");
+      if (token) {
+        navigate("/dashboard/my-profile");
+      } else {
+        navigate("login");
+      }
     }
   }, [roles, token, requiredRoles]);
 
