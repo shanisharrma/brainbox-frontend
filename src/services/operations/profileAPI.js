@@ -4,7 +4,7 @@ import { apiConnector } from "../apiConnector";
 import { profileEndpoints } from "../apis";
 import { navigate } from "../../hooks/setNavigate";
 
-const { PROFILE_API, ENROLLED_COURSES_API } = profileEndpoints;
+const { PROFILE_API } = profileEndpoints;
 
 export const getUserDetails = (token) => {
   return async (dispatch) => {
@@ -24,25 +24,4 @@ export const getUserDetails = (token) => {
     }
     dispatch(setLoading(false));
   };
-};
-
-export const getUserEnrolledCourses = async (token) => {
-  const toastId = toast.loading("Loading...");
-  let result = [];
-  try {
-    const response = await apiConnector("GET", ENROLLED_COURSES_API, null, {
-      Authorization: `Bearer ${token}`,
-    });
-
-    if (!response.success) {
-      throw new Error(response.message);
-    }
-
-    toast.success(response.message);
-    result = response.data;
-  } catch (error) {
-    toast.error(error.response.data.message);
-  }
-  toast.dismiss(toastId);
-  return result;
 };

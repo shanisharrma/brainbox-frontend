@@ -12,7 +12,6 @@ export const authEndpoints = {
 
 export const profileEndpoints = {
   PROFILE_API: BASE_URL + "/profile", // GET
-  ENROLLED_COURSES_API: BASE_URL + "/courses/enrolled", // GET
 };
 
 export const settingsEndpoints = {
@@ -20,7 +19,7 @@ export const settingsEndpoints = {
   CHANGE_PASSWORD_API: BASE_URL + "/change-password", // PUT
 };
 
-export const categories = {
+export const categoriesEndpoints = {
   CATEGORIES_API: BASE_URL + "/categories",
 };
 
@@ -29,6 +28,9 @@ export const contactUsEndpoints = {
 };
 
 export const courseEndpoints = {
+  COURSES_API: BASE_URL + "/courses", //GET all courses and for all the sections API
+  ENROLLED_COURSES_API: BASE_URL + "/courses/enrolled", // GET
   TAUGHT_COURSES_API: BASE_URL + "/courses/taught", //GET
-  DELETE_COURSE_API: BASE_URL + "/course", //DELETE with courseId
+  SECTION_API: BASE_URL + "/sections", // For all the subsections API
+  RATINGS_AND_REVIEWS_API: BASE_URL + "/ratings", // For all the subsections API
 };

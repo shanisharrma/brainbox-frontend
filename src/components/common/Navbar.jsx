@@ -5,9 +5,8 @@ import { useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { ProfileDropdown } from "../core/Auth";
 import { useEffect, useState } from "react";
-import { apiConnector } from "../../services/apiConnector";
-import { categories } from "../../services/apis";
 import { IoIosArrowDown } from "react-icons/io";
+import { getAllCategories } from "../../services/operations/categoryAPI";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
@@ -23,8 +22,8 @@ const Navbar = () => {
 
   const fetchSubLinks = async () => {
     try {
-      const result = await apiConnector("GET", categories.CATEGORIES_API);
-      setSubLinks(result.data);
+      const result = await getAllCategories();
+      setSubLinks(result);
     } catch (error) {
       console.error("Could not fetch the category list", error);
     }
@@ -52,7 +51,11 @@ const Navbar = () => {
                       <p>{link.title}</p> <IoIosArrowDown />
                       <div className="invisible absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[10%] flex flex-col rounded-lg bg-rich-black-5 p-4 text-rich-black-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 w-[300px] z-10">
                         <div className="absolute left-[50%] top-0 translate-y-[-50%] translate-x-[80%] h-6 w-6 rotate-45 rounded bg-rich-black-5 z-0"></div>
-                        {subLinks && subLinks.length ? (
+                        {subLinks ? (
+                          <p className="p-4 hover:bg-rich-black-25 rounded-md">
+                            Loading...
+                          </p>
+                        ) : subLinks.length ? (
                           subLinks.map((subLink, index) => (
                             <NavLink
                               to={`/catalog/${subLink.name
