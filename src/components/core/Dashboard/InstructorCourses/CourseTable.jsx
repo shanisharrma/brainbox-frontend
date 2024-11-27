@@ -11,12 +11,14 @@ import {
   getInstructorCourses,
 } from "../../../../services/operations/courseAPI";
 import { ConfirmationModal } from "../../../common";
+import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 const CourseTable = () => {
   const { token } = useSelector((state) => state.auth);
   const [taughtCourses, setTaughtCourses] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [confirmationModal, setConfirmationModal] = useState(false);
+  const [confirmationModal, setConfirmationModal] = useState(null);
 
   const fetchTaughtCourses = async () => {
     try {
@@ -27,11 +29,13 @@ const CourseTable = () => {
     }
   };
 
-  const handleCourseDelete = async () => {
+  const handleCourseDelete = async (courseId) => {
     setLoading(true);
-    await deleteCourse(taughtCourses.id, token);
-    fetchTaughtCourses(token);
-    setConfirmationModal(true);
+    const result = await deleteCourse(courseId, token);
+    if (result.success) {
+      fetchTaughtCourses();
+    }
+    setConfirmationModal(null);
     setLoading(false);
   };
 
@@ -42,37 +46,37 @@ const CourseTable = () => {
 
   return (
     <div>
-      <div className="rounded-xl border border-rich-black-400">
-        <div>
-          <div className="flex gap-x-10 rounded-t-md border-b border-b-rich-black-400 px-6 py-2">
-            <div className="flex-1 text-left text-sm font-medium uppercase text-rich-black-50">
+      <Table className="rounded-xl border border-rich-black-400">
+        <Thead>
+          <Tr className="flex gap-x-10 rounded-t-md border-b border-b-rich-black-400 px-6 py-2">
+            <Th className="flex-1 text-left text-sm font-medium uppercase text-rich-black-50">
               Courses
-            </div>
-            <div className="text-left text-sm font-medium uppercase text-rich-black-50">
+            </Th>
+            <Th className="text-left text-sm font-medium uppercase text-rich-black-50">
               Duration
-            </div>
-            <div className="text-left text-sm font-medium uppercase text-rich-black-50">
+            </Th>
+            <Th className="text-left text-sm font-medium uppercase text-rich-black-50">
               Price
-            </div>
-            <div className="text-left text-sm font-medium uppercase text-rich-black-50">
+            </Th>
+            <Th className="text-left text-sm font-medium uppercase text-rich-black-50">
               Actions
-            </div>
-          </div>
-        </div>
-        <div>
+            </Th>
+          </Tr>
+        </Thead>
+        <Tbody>
           {taughtCourses.length === 0 ? (
-            <div>
-              <div className="py-10 text-center text-2xl font-medium text-rich-black-5">
+            <Tr>
+              <Td className="py-10 text-center text-2xl font-medium text-rich-black-5">
                 No Courses Found
-              </div>
-            </div>
+              </Td>
+            </Tr>
           ) : (
             taughtCourses.map((course) => (
-              <div
+              <Tr
                 key={course.id}
                 className="flex gap-x-10 border-b border-rich-black-800 px-6 py-8"
               >
-                <div className="flex flex-1 gap-x-4">
+                <Td className="flex flex-1 gap-x-4">
                   <img
                     src={course.thumbnail}
                     alt={course.name}
@@ -92,31 +96,31 @@ const CourseTable = () => {
                       Created: {course.createdAt}
                     </p>
                     {course.status === COURSE_STATUS.DRAFT ? (
-                      <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-rich-black-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">
+                      <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-rich-black-300 px-2 py-[2px] text-[12px] font-medium text-crimsonRed-25">
                         <HiClock size={14} />
-                        Drafted
+                        Draft
                       </p>
                     ) : (
-                      <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-rich-black-500 px-2 py-[2px] text-[12px] font-medium text-crimsonRed-50">
-                        <div className="flex h-3 w-3 items-center justify-center rounded-full bg-crimsonRed-50 text-rich-black-500">
+                      <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-rich-black-300 px-2 py-[2px] text-[12px] font-medium text-crimsonRed-50">
+                        <span className="flex h-3 w-3 items-center justify-center rounded-full bg-crimsonRed-50 text-rich-black-500">
                           <FaCheck size={8} />
-                        </div>
+                        </span>
                         Published
                       </p>
                     )}
                   </div>
-                </div>
-                <div className="text-sm font-medium text-rich-black-100">
+                </Td>
+                <Td className="text-sm font-medium text-rich-black-100">
                   2hr 30min
-                </div>
-                <div className="text-sm font-medium text-rich-black-100">
+                </Td>
+                <Td className="text-sm font-medium text-rich-black-100">
                   ₹{course.price}
-                </div>
-                <div className="text-sm font-medium text-rich-black-50">
+                </Td>
+                <Td className="text-sm font-medium text-rich-black-50">
                   <button
                     disabled={loading}
                     onClick={() => {
-                      navigate(`/dashboard/edit-course/${course._id}`);
+                      navigate(`/dashboard/edit-course/${course.id}`);
                     }}
                     title="Edit"
                     className="px-2 transition-all duration-200 hover:scale-110 hover:text-caribbeanGreen-300"
@@ -133,7 +137,7 @@ const CourseTable = () => {
                         btn1Text: !loading ? "Delete" : "Loading...  ",
                         btn2Text: "Cancel",
                         btn1Handler: !loading
-                          ? () => handleCourseDelete(course._id)
+                          ? () => handleCourseDelete(course.id)
                           : () => {},
                         btn2Handler: !loading
                           ? () => setConfirmationModal(null)
@@ -145,12 +149,12 @@ const CourseTable = () => {
                   >
                     <RiDeleteBin6Line size={20} />
                   </button>
-                </div>
-              </div>
+                </Td>
+              </Tr>
             ))
           )}
-        </div>
-      </div>
+        </Tbody>
+      </Table>
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </div>
   );

@@ -13,11 +13,11 @@ const IconBtn = ({
     <button
       disabled={disabled}
       onClick={onclick}
-      className={`flex items-center ${
+      className={`flex items-center cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold  ${
         outline
-          ? "border border-crimsonRed-50 bg-transparent"
-          : "bg-crimsonRed-50"
-      } cursor-pointer gap-x-2 rounded-md py-2 px-5 font-semibold text-rich-black-5 ${customClasses}`}
+          ? "border border-crimsonRed-50 bg-transparent text-crimsonRed-50"
+          : "bg-crimsonRed-50 text-rich-black-5"
+      }  ${customClasses}`}
       type={type}
     >
       {children ? (

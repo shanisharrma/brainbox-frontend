@@ -165,7 +165,7 @@ const EditProfile = () => {
                   className="bg-rich-black-300 rounded-lg text-rich-black-100 w-[18%] p-3 px-2 border-b-[1px] border-b-rich-black-100 placeholder:text-rich-black-100"
                   name="countryCode"
                   id="countryCode"
-                  defaultValue={user?.phoneNumber.countryCode}
+                  defaultValue={`+${user?.phoneNumber.countryCode}`}
                   {...register("countryCode", { required: true })}
                 >
                   {CountryCode.map((element, index) => (

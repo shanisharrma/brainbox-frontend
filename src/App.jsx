@@ -16,7 +16,9 @@ import { Navbar } from "./components/common";
 import { setNavigate } from "./hooks/setNavigate";
 import { ProtectedRoute, PublicRoute } from "./components/core/Auth";
 import {
+  AddCourse,
   Cart,
+  EditCourse,
   EnrolledCourses,
   MyCourses,
   MyProfile,
@@ -108,6 +110,22 @@ function App() {
             element={
               <ProtectedRoute requiredRoles={["instructor"]}>
                 <MyCourses />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/add-course"
+            element={
+              <ProtectedRoute requiredRoles={["instructor"]}>
+                <AddCourse />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard/edit-course/:courseId"
+            element={
+              <ProtectedRoute requiredRoles={["instructor"]}>
+                <EditCourse />
               </ProtectedRoute>
             }
           />

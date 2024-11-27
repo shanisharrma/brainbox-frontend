@@ -34,3 +34,8 @@ export const courseEndpoints = {
   SECTION_API: BASE_URL + "/sections", // For all the subsections API
   RATINGS_AND_REVIEWS_API: BASE_URL + "/ratings", // For all the subsections API
 };
+
+export const tagEndpoints = {
+  TAG_API: BASE_URL + "/tags", // GET all tags
+  TAG_SUGGESTIONS_API: BASE_URL + "/tags/suggestions", //GET the suggested tags
+};

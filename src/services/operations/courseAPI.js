@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
-import { courseEndpoints } from "../apis";
+import { courseEndpoints, tagEndpoints } from "../apis";
+import { navigate } from "../../hooks/setNavigate";
 
 const {
   TAUGHT_COURSES_API,
@@ -9,6 +10,8 @@ const {
   SECTION_API,
   RATINGS_AND_REVIEWS_API,
 } = courseEndpoints;
+
+const { TAG_API, TAG_SUGGESTIONS_API } = tagEndpoints;
 
 export const getUserEnrolledCourses = async (token) => {
   const toastId = toast.loading("Loading...");
@@ -33,6 +36,7 @@ export const getUserEnrolledCourses = async (token) => {
 
 export const deleteCourse = async (courseId, token) => {
   const toastId = toast.loading("Loading...");
+  let result;
   try {
     const response = await apiConnector(
       "DELETE",
@@ -45,11 +49,15 @@ export const deleteCourse = async (courseId, token) => {
       throw new Error(response.message);
     }
 
+    result = response;
     toast.success(response.message);
   } catch (error) {
+    result = error.response.data;
     toast.error(error.response.data.message);
   }
   toast.dismiss(toastId);
+  navigate("/dashboard/my-courses");
+  return result;
 };
 
 export const getInstructorCourses = async (token) => {
@@ -73,11 +81,33 @@ export const getInstructorCourses = async (token) => {
   return result;
 };
 
-export const getSingleCourse = async (courseId) => {
+export const getPublicSingleCourse = async (courseId) => {
   const toastId = toast.loading("Loading...");
   let result = null;
   try {
     const response = await apiConnector("GET", `${COURSES_API}/${courseId}`);
+    if (!response.success) {
+      throw new Error(response.message);
+    }
+
+    result = response.data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+  toast.dismiss(toastId);
+  return result;
+};
+
+export const getEditableSingleCourse = async (token, courseId) => {
+  const toastId = toast.loading("Loading...");
+  let result = null;
+  try {
+    const response = await apiConnector(
+      "GET",
+      `${COURSES_API}/${courseId}/edit`,
+      null,
+      { Authorization: `Bearer ${token}` }
+    );
     if (!response.success) {
       throw new Error(response.message);
     }
@@ -146,7 +176,7 @@ export const updateCourseDetails = async (token, courseId, data) => {
       throw new Error(response.message);
     }
 
-    result = response.data;
+    result = response;
     toast.success(response.message);
   } catch (error) {
     toast.error(error.response.data.message);
@@ -262,7 +292,7 @@ export const updateSubSection = async (
   try {
     const response = await apiConnector(
       "PUT",
-      `${COURSES_API}/${sectionId}/subsections/${subSectionId}`,
+      `${SECTION_API}/${sectionId}/subsections/${subSectionId}`,
       data,
       { Authorization: `Bearer ${token}` }
     );
@@ -286,7 +316,7 @@ export const deleteSubSection = async (token, sectionId, subSectionId) => {
   try {
     const response = await apiConnector(
       "DELETE",
-      `${COURSES_API}/${sectionId}/subsections/${subSectionId}`,
+      `${SECTION_API}/${sectionId}/subsections/${subSectionId}`,
       null,
       { Authorization: `Bearer ${token}` }
     );
@@ -295,7 +325,7 @@ export const deleteSubSection = async (token, sectionId, subSectionId) => {
       throw new Error(response.message);
     }
 
-    result = response.data;
+    result = response;
     toast.success(response.message);
   } catch (error) {
     toast.error(error.response.data.message);
@@ -367,4 +397,35 @@ export const allRatingsAndReviews = async () => {
   }
   toast.dismiss(toastId);
   return result;
+};
+
+export const getAllTags = async () => {
+  try {
+    const response = await apiConnector("GET", TAG_API);
+
+    if (!response.success) {
+      throw new Error(response.message);
+    }
+
+    return response.data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+};
+
+export const getAllSuggestedTags = async (query) => {
+  try {
+    const response = await apiConnector(
+      "GET",
+      `${TAG_SUGGESTIONS_API}?q=${query}`
+    );
+
+    if (!response.message) {
+      throw new Error(response.message);
+    }
+
+    return response.data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
 };

@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { apiConnector } from "../apiConnector";
 import { settingsEndpoints } from "../apis";
 import { setUser } from "../../store/slices/profileSlice";
+import { navigate } from "../../hooks/setNavigate";
 
 const { UPDATE_PROFILE_API, CHANGE_PASSWORD_API } = settingsEndpoints;
 
@@ -42,6 +43,7 @@ export const updateProfile = (token, data) => {
 
       toast.success(response.message);
       dispatch(setUser(response.data));
+      dispatch(navigate("/dashboard/my-profile"));
     } catch (error) {
       toast.error(error.response.data.message);
     }
