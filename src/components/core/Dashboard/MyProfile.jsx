@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { IconBtn } from "../../common";
 import { RiEditBoxLine } from "react-icons/ri";
 import { navigate } from "../../../hooks/setNavigate";
-import { formattedDate } from "../../../utils/dateFormatter";
+import { formattedDate } from "../../../utils/utilityFunctions";
 
 const MyProfile = () => {
   const { user } = useSelector((state) => state.profile);

@@ -8,6 +8,7 @@ import ResetPassword from "./ResetPassword";
 import About from "./About";
 import Contact from "./Contact";
 import Dashboard from "./Dashboard";
+import Catalog from "./Catalog";
 
 export {
   Home,
@@ -20,4 +21,5 @@ export {
   About,
   Contact,
   Dashboard,
+  Catalog,
 };

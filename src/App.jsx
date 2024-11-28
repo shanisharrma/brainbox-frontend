@@ -3,6 +3,7 @@ import "./App.css";
 import {
   About,
   AccountConfirmation,
+  Catalog,
   Contact,
   Dashboard,
   Error,
@@ -35,6 +36,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/catalog/:category" element={<Catalog />} />
         <Route
           path="/account-confirmation/:token"
           element={<AccountConfirmation />}

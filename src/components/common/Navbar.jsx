@@ -46,15 +46,15 @@ const Navbar = () => {
 
         {/* Nav links */}
         <nav>
-          <ul className="flex gap-x-6 text-rich-black-50 text-base">
+          <ul className="flex gap-x-6 text-rich-black-50 text-base z-10">
             {NavbarLinks &&
               NavbarLinks.map((link, index) => (
                 <li key={index}>
                   {link.title === "Catalog" ? (
                     <div className="relative flex items-center gap-2 cursor-pointer group">
                       <p>{link.title}</p> <IoIosArrowDown />
-                      <div className="invisible absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[10%] flex flex-col rounded-lg bg-rich-black-5 p-4 text-rich-black-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 w-[300px] z-10">
-                        <div className="absolute left-[50%] top-0 translate-y-[-50%] translate-x-[80%] h-6 w-6 rotate-45 rounded bg-rich-black-5 z-0"></div>
+                      <div className="invisible absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[10%] flex flex-col rounded-lg bg-rich-black-5 p-4 text-rich-black-900 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 w-[300px] z-30">
+                        <div className="absolute left-[50%] top-0 translate-y-[-50%] translate-x-[80%] h-6 w-6 rotate-45 rounded bg-rich-black-5 z-20"></div>
                         {loading ? (
                           <p className="p-4 hover:bg-rich-black-25 rounded-md">
                             Loading...

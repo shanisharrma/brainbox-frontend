@@ -39,3 +39,7 @@ export const tagEndpoints = {
   TAG_API: BASE_URL + "/tags", // GET all tags
   TAG_SUGGESTIONS_API: BASE_URL + "/tags/suggestions", //GET the suggested tags
 };
+
+export const catalogDataEndpoints = {
+  CATALOG_PAGE_DATA_API: BASE_URL + "/categories", //GET all the courses related to category
+};

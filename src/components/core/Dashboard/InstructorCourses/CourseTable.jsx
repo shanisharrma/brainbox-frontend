@@ -13,6 +13,7 @@ import {
 import { ConfirmationModal } from "../../../common";
 import { Table, Tbody, Td, Th, Thead, Tr } from "react-super-responsive-table";
 import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+import { formatDate } from "../../../../utils/utilityFunctions";
 
 const CourseTable = () => {
   const { token } = useSelector((state) => state.auth);
@@ -93,7 +94,7 @@ const CourseTable = () => {
                         : course.description}
                     </p>
                     <p className="text-[12px] text-rich-black-5">
-                      Created: {course.createdAt}
+                      Created: {formatDate(course.createdAt)}
                     </p>
                     {course.status === COURSE_STATUS.DRAFT ? (
                       <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-rich-black-300 px-2 py-[2px] text-[12px] font-medium text-crimsonRed-25">
