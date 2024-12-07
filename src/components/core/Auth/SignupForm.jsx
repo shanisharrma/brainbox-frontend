@@ -3,8 +3,8 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import RoleSelector from "./RoleSelector";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { register } from "../../../services/operations/authAPI";
-import CountryCode from "../../../data/countrycode.json";
+import { register } from "@/services/operations/authAPI";
+import CountryCode from "@/data/countrycode.json";
 
 const SignupForm = () => {
   const defaultSignupForm = {

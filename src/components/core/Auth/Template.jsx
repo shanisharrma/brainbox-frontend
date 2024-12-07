@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import frameImage from "../../../assets/Images/frame.png";
+import frameImage from "@/assets/Images/frame.png";
 import { FcGoogle } from "react-icons/fc";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";

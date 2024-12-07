@@ -1,5 +1,5 @@
-import signupImage from "../assets/Images/signup.webp";
-import { Template } from "../components/core/Auth";
+import signupImage from "@/assets/Images/signup.webp";
+import { Template } from "@/components/core/Auth";
 
 const Signup = () => {
   return (

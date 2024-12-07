@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { useSelector } from "react-redux";
-import { navigate } from "../../../hooks/setNavigate";
+import { navigate } from "@/hooks/setNavigate";
 import { IconBtn } from "../../common";
 import { BsFillCaretRightFill } from "react-icons/bs";
 import { FaShareSquare } from "react-icons/fa";

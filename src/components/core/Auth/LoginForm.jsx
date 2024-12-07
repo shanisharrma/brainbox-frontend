@@ -2,7 +2,7 @@ import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { login } from "../../../services/operations/authAPI";
+import { login } from "@/services/operations/authAPI";
 
 const LoginForm = () => {
   const defaultLoginForm = { email: "", password: "" };

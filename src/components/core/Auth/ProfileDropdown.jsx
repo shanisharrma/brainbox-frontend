@@ -2,9 +2,9 @@ import { useRef, useState } from "react";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { logout } from "../../../services/operations/authAPI";
+import { logout } from "@/services/operations/authAPI";
 import { VscDashboard, VscSignOut } from "react-icons/vsc";
-import useClickOutside from "../../../hooks/useClickOutside";
+import useClickOutside from "@/hooks/useClickOutside";
 
 const ProfileDropdown = () => {
   const { user } = useSelector((state) => state.profile);

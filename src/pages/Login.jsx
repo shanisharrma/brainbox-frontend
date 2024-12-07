@@ -1,5 +1,5 @@
-import loginImage from "../assets/Images/login.webp";
-import { Template } from "../components/core/Auth";
+import loginImage from "@/assets/Images/login.webp";
+import { Template } from "@/components/core/Auth";
 
 const Login = () => {
   return (

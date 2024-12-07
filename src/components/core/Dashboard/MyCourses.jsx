@@ -1,6 +1,6 @@
 import { IconBtn } from "../../common";
 import { FaPlus } from "react-icons/fa";
-import { navigate } from "../../../hooks/setNavigate";
+import { navigate } from "@/hooks/setNavigate";
 import CourseTable from "./InstructorCourses/CourseTable";
 
 const MyCourses = () => {

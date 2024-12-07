@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { navigate } from "../../../hooks/setNavigate";
-import { updateCompletedLectures } from "../../../store/slices/viewCourseSlice";
-import { markLectureAsComplete } from "../../../services/operations/courseAPI";
+import { navigate } from "@/hooks/setNavigate";
+import { updateCompletedLectures } from "@/store/slices/viewCourseSlice";
+import { markLectureAsComplete } from "@/services/operations/courseAPI";
 import { BigPlayButton, Player } from "video-react";
 import "video-react/dist/video-react.css";
 import { IconBtn } from "../../common";
-import { findArrayIndex } from "../../../utils/utilityFunctions";
+import { findArrayIndex } from "@/utils/utilityFunctions";
 
 const VideoDetails = () => {
   const { courseId, sectionId, subsectionId } = useParams();

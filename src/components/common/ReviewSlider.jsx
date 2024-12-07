@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { allRatingsAndReviews } from "../../services/operations/courseAPI";
+import { allRatingsAndReviews } from "@/services/operations/courseAPI";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, FreeMode, Pagination } from "swiper/modules";
 import "swiper/css";

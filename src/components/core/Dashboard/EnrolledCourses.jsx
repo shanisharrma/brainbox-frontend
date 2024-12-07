@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
 import { useSelector } from "react-redux";
-import { getUserEnrolledCourses } from "../../../services/operations/courseAPI";
-import { navigate } from "../../../hooks/setNavigate";
-import { formatDuration } from "../../../utils/utilityFunctions";
+import { getUserEnrolledCourses } from "@/services/operations/courseAPI";
+import { navigate } from "@/hooks/setNavigate";
+import { formatDuration } from "@/utils/utilityFunctions";
 
 const EnrolledCourses = () => {
   const { token } = useSelector((state) => state.auth);

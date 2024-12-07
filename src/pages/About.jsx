@@ -1,15 +1,15 @@
 import HighlightText from "../components/core/HomePage/HighlightText";
-import BannerImage1 from "../assets/Images/aboutus1.webp";
-import BannerImage2 from "../assets/Images/aboutus2.webp";
-import BannerImage3 from "../assets/Images/aboutus3.webp";
-import FoundingStory from "../assets/Images/FoundingStory.png";
+import BannerImage1 from "@/assets/Images/aboutus1.webp";
+import BannerImage2 from "@/assets/Images/aboutus2.webp";
+import BannerImage3 from "@/assets/Images/aboutus3.webp";
+import FoundingStory from "@/assets/Images/FoundingStory.png";
 import {
   Quote,
   Stats,
   ContactFormSection,
   LearningGrid,
 } from "../components/core/AboutPage";
-import { Footer, ReviewSlider } from "../components/common";
+import { Footer, ReviewSlider } from "@/components/common";
 
 const About = () => {
   return (

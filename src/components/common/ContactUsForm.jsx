@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { apiConnector } from "../../services/apiConnector";
-import { contactUsEndpoints } from "../../services/apis";
+import { apiConnector } from "@/services/apiConnector";
+import { contactUsEndpoints } from "@/services/apis";
 import toast from "react-hot-toast";
-import CountryCode from "../../data/countrycode.json";
+import CountryCode from "@/data/countrycode.json";
 
 const contactCategory = ["Complaint", "Feedback", "Feature Request"];
 

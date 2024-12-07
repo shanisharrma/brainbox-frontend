@@ -1,6 +1,6 @@
 import Template from "./Template";
 import LoginForm from "./LoginForm";
-import Signup from "../../../pages/Signup";
+import Signup from "@/pages/Signup";
 import RoleSelector from "./RoleSelector";
 import ProfileDropdown from "./ProfileDropdown";
 import ProtectedRoute from "./ProtectedRoute";

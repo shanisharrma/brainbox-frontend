@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { MdClose } from "react-icons/md";
 import { useSelector } from "react-redux";
-import { getAllSuggestedTags } from "../../../../../services/operations/courseAPI";
+import { getAllSuggestedTags } from "@/services/operations/courseAPI";
 
 const ChipInput = ({
   label,

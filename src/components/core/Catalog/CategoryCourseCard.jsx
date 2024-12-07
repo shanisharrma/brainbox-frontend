@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAverageRating } from "../../../utils/utilityFunctions";
+import { getAverageRating } from "@/utils/utilityFunctions";
 import { RatingStars } from "../../common";
 
 const CategoryCourseCard = ({ course }) => {

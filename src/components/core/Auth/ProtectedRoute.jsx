@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useSelector } from "react-redux";
-import { navigate } from "../../../hooks/setNavigate";
+import { navigate } from "@/hooks/setNavigate";
 import toast from "react-hot-toast";
-import { hasRequiredRoles } from "../../../utils/authUtils";
+import { hasRequiredRoles } from "@/utils/authUtils";
 import { useEffect } from "react";
 
 const ProtectedRoute = ({ children, requiredRoles }) => {

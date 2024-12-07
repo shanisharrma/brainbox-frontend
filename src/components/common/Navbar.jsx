@@ -1,12 +1,12 @@
 import { Link, matchPath, NavLink, useLocation } from "react-router-dom";
-import Logo from "../../assets/Logo/brainbox-light.svg";
-import { NavbarLinks } from "../../data/navbar-links";
+import Logo from "@/assets/Logo/brainbox-light.svg";
+import { NavbarLinks } from "@/data/navbar-links";
 import { useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { ProfileDropdown } from "../core/Auth";
 import { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { getAllCategories } from "../../services/operations/categoryAPI";
+import { getAllCategories } from "@/services/operations/categoryAPI";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);

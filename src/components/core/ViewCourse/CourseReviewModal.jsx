@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import ReactStars from "react-rating-stars-component";
 import { IconBtn } from "../../common";
-import { createRating } from "../../../services/operations/courseAPI";
+import { createRating } from "@/services/operations/courseAPI";
 import { RxCross2 } from "react-icons/rx";
 
 /* eslint-disable react/prop-types */

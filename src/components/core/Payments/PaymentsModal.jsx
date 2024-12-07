@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import brainBoxLogo from "../../../assets/Logo/brainbox.svg";
-import stripeLogo from "../../../assets/Logo/stripe.png";
-import razorpayLogo from "../../../assets/Logo/razorpay.png";
+import brainBoxLogo from "@/assets/Logo/brainbox.svg";
+import stripeLogo from "@/assets/Logo/stripe.png";
+import razorpayLogo from "@/assets/Logo/razorpay.png";
 import { useSelector } from "react-redux";
 import { IconBtn } from "../../common";
 import StripePaymentForm from "./Stripe/StripePaymentForm";

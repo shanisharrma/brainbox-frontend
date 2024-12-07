@@ -9,7 +9,7 @@ import {
   LearningLanguageSection,
   TimelineSection,
 } from "../components/core/HomePage";
-import Banner from "../assets/Images/banner.mp4";
+import Banner from "@/assets/Images/banner.mp4";
 import { Footer, ReviewSlider } from "../components/common";
 
 const Home = () => {

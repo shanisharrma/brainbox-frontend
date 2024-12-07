@@ -3,10 +3,9 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { IconBtn } from "../../common";
-import { navigate } from "../../../hooks/setNavigate";
+import { navigate } from "@/hooks/setNavigate";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsChevronDown } from "react-icons/bs";
-import { findArrayIndex } from "../../../utils/utilityFunctions";
 
 const VideoDetailsSidebar = ({ setReviewModal }) => {
   const [activeStatus, setActiveStatus] = useState("");
