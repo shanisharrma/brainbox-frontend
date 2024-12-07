@@ -5,6 +5,7 @@ import {
   AccountConfirmation,
   Catalog,
   Contact,
+  CourseDetails,
   Dashboard,
   Error,
   ForgotPassword,
@@ -12,6 +13,7 @@ import {
   Login,
   ResetPassword,
   Signup,
+  ViewCourse,
 } from "./pages";
 import { Navbar } from "./components/common";
 import { setNavigate } from "./hooks/setNavigate";
@@ -21,10 +23,12 @@ import {
   Cart,
   EditCourse,
   EnrolledCourses,
+  InstructorDashboard,
   MyCourses,
   MyProfile,
   Settings,
 } from "./components/core/Dashboard";
+import { VideoDetails } from "./components/core/ViewCourse";
 
 function App() {
   const navigate = useNavigate();
@@ -37,6 +41,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/catalog/:category" element={<Catalog />} />
+        <Route path="/course/:courseId" element={<CourseDetails />} />
         <Route
           path="/account-confirmation/:token"
           element={<AccountConfirmation />}
@@ -116,6 +121,14 @@ function App() {
             }
           />
           <Route
+            path="/dashboard/instructor"
+            element={
+              <ProtectedRoute requiredRoles={["instructor"]}>
+                <InstructorDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/dashboard/add-course"
             element={
               <ProtectedRoute requiredRoles={["instructor"]}>
@@ -128,6 +141,23 @@ function App() {
             element={
               <ProtectedRoute requiredRoles={["instructor"]}>
                 <EditCourse />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+
+        <Route
+          element={
+            <ProtectedRoute>
+              <ViewCourse />
+            </ProtectedRoute>
+          }
+        >
+          <Route
+            path="/view-course/:courseId/section/:sectionId/subsection/:subsectionId"
+            element={
+              <ProtectedRoute requiredRoles={["student"]}>
+                <VideoDetails />
               </ProtectedRoute>
             }
           />

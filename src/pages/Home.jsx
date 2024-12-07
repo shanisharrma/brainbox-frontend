@@ -10,7 +10,7 @@ import {
   TimelineSection,
 } from "../components/core/HomePage";
 import Banner from "../assets/Images/banner.mp4";
-import { Footer } from "../components/common";
+import { Footer, ReviewSlider } from "../components/common";
 
 const Home = () => {
   return (
@@ -177,15 +177,17 @@ const Home = () => {
         <div className="w-full my-12">
           <InstructorSection />
         </div>
-
-        {/* Reviews */}
-        <div className="flex flex-col items-center">
-          <h2 className="text-center text-4xl font-semibold mt-10">
+      </div>
+      {/* Section Slider */}
+      <section className="my-7">
+        <div className="text-rich-black-5 w-11/12 max-w-maxContent mx-auto flex flex-col items-center justify-center">
+          <h2 className="text-center text-4xl font-semibold mt-8">
             Reviews from other learners
           </h2>
-          {/* Review slider */}
+          {/* Reviews Slider */}
+          <ReviewSlider />
         </div>
-      </div>
+      </section>
       {/* Footer */}
       <Footer />
     </div>

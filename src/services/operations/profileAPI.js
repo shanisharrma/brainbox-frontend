@@ -4,7 +4,7 @@ import { apiConnector } from "../apiConnector";
 import { profileEndpoints } from "../apis";
 import { navigate } from "../../hooks/setNavigate";
 
-const { PROFILE_API } = profileEndpoints;
+const { PROFILE_API, INSTRUCTOR_DASHBOARD_API } = profileEndpoints;
 
 export const getUserDetails = (token) => {
   return async (dispatch) => {
@@ -19,9 +19,28 @@ export const getUserDetails = (token) => {
       }
       dispatch(setUser(response.data));
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.message);
       navigate("/login");
     }
     dispatch(setLoading(false));
   };
+};
+
+export const getInstructorDashboard = async (token) => {
+  const toastId = toast.loading("Loading...");
+  let result = null;
+  try {
+    const response = await apiConnector("GET", INSTRUCTOR_DASHBOARD_API, null, {
+      Authorization: `Bearer ${token}`,
+    });
+    if (!response.success) {
+      throw new Error(response.message);
+    }
+
+    result = response.data;
+  } catch (error) {
+    toast.error(error.response.message);
+  }
+  toast.dismiss(toastId);
+  return result;
 };

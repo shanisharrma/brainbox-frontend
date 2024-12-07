@@ -17,7 +17,6 @@ const Catalog = () => {
       setLoading(true);
       const result = await getCatalogPageData(category);
       if (result.success) {
-        console.log("response ==>", result.data);
         setCatalogPageData(result.data);
       }
       setLoading(false);

@@ -6,7 +6,6 @@ import "swiper/css/pagination";
 
 /* eslint-disable react/prop-types */
 const CourseSlider = ({ courses }) => {
-  console.log("courseSlider", courses);
   return (
     <div className="">
       {courses && courses.length > 0 ? (

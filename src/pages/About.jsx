@@ -9,7 +9,7 @@ import {
   ContactFormSection,
   LearningGrid,
 } from "../components/core/AboutPage";
-import { Footer } from "../components/common";
+import { Footer, ReviewSlider } from "../components/common";
 
 const About = () => {
   return (
@@ -133,10 +133,12 @@ const About = () => {
 
       {/* Section Slider */}
       <section className="my-7">
-        <div className="text-rich-black-5 w-11/12 max-w-maxContent mx-auto flex flex-col items-center justify-center gap-10">
+        <div className="text-rich-black-5 w-11/12 max-w-maxContent mx-auto flex flex-col items-center justify-center">
           <h2 className="text-center text-4xl font-semibold mt-8">
             Reviews from other learners
           </h2>
+          {/* Reviews Slider */}
+          <ReviewSlider />
         </div>
       </section>
       {/* Footer */}

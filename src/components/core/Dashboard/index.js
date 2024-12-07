@@ -6,6 +6,7 @@ import Cart from "./Cart";
 import MyCourses from "./MyCourses";
 import AddCourse from "./AddCourse";
 import EditCourse from "./EditCourse";
+import InstructorDashboard from "./InstructorDashboard";
 
 export {
   Sidebar,
@@ -16,4 +17,5 @@ export {
   MyCourses,
   AddCourse,
   EditCourse,
+  InstructorDashboard,
 };

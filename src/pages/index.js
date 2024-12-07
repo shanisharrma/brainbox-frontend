@@ -9,6 +9,8 @@ import About from "./About";
 import Contact from "./Contact";
 import Dashboard from "./Dashboard";
 import Catalog from "./Catalog";
+import CourseDetails from "./CourseDetails";
+import ViewCourse from "./ViewCourse";
 
 export {
   Home,
@@ -22,4 +24,6 @@ export {
   Contact,
   Dashboard,
   Catalog,
+  CourseDetails,
+  ViewCourse,
 };

@@ -4,6 +4,7 @@ import ContactUsForm from "./ContactUsForm";
 import IconBtn from "./IconBtn";
 import ConfirmationModal from "./ConfirmationModal";
 import RatingStars from "./RatingStars";
+import ReviewSlider from "./ReviewSlider";
 
 export {
   Footer,
@@ -12,4 +13,5 @@ export {
   IconBtn,
   ConfirmationModal,
   RatingStars,
+  ReviewSlider,
 };

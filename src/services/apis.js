@@ -12,6 +12,7 @@ export const authEndpoints = {
 
 export const profileEndpoints = {
   PROFILE_API: BASE_URL + "/profile", // GET
+  INSTRUCTOR_DASHBOARD_API: BASE_URL + "/dashboard/instructor", //GET
 };
 
 export const settingsEndpoints = {
@@ -42,4 +43,9 @@ export const tagEndpoints = {
 
 export const catalogDataEndpoints = {
   CATALOG_PAGE_DATA_API: BASE_URL + "/categories", //GET all the courses related to category
+};
+
+export const paymentEndpoints = {
+  CAPTURE_PAYMENT_API: BASE_URL + "/payments/capture", //POST
+  VERIFY_PAYMENT_API: BASE_URL + "/payments/verify", //POST
 };

@@ -1,27 +1,39 @@
 import { useSelector } from "react-redux";
-import { IconBtn } from "../../../common";
+import { ConfirmationModal, IconBtn } from "../../../common";
+import { useState } from "react";
+import PaymentsModal from "../../Payments/PaymentsModal";
 
 const RenderTotalAmount = () => {
-  const [cartItems] = useSelector((state) => state.cart);
-
-  const handleBuyCourse = () => {
-    const courses = cartItems.map((course) => course.id);
-    console.log("Bought these courses: ", courses);
-    // TODO: API integrate --> payment gateway
-  };
+  const { cartItems } = useSelector((state) => state.cart);
+  const [paymentsModal, setPaymentsModal] = useState(null);
+  const [confirmationModal, setConfirmationModal] = useState(null);
 
   let totalAmount = 0;
-  totalAmount += cartItems.map((item) => item.price);
+  cartItems.forEach((item) => {
+    totalAmount += item.price;
+  });
   return (
-    <div>
-      <p>Total:</p>
-      <p>Rs {totalAmount}</p>
-      <IconBtn
-        text={"Buy Now"}
-        onclick={handleBuyCourse}
-        customClasses={"w-full justify-center"}
-      />
-    </div>
+    <>
+      <div className="min-w-[280px] rounded-md border border-rich-black-300 bg-rich-black-800 p-6">
+        <p className="mb-1 text-sm font-medium text-rich-black-100">Total:</p>
+        <p className="mb-6 text-3xl font-medium text-crimsonRed-50">
+          ₹ {totalAmount}
+        </p>
+        <IconBtn
+          text={"Buy Now"}
+          onclick={() => setPaymentsModal(true)}
+          customClasses={"w-full justify-center"}
+        />
+      </div>
+      {paymentsModal && (
+        <PaymentsModal
+          setPaymentsModal={setPaymentsModal}
+          items={cartItems}
+          setConfirmationModal={setConfirmationModal}
+        />
+      )}
+      {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
+    </>
   );
 };
 

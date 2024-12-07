@@ -11,7 +11,7 @@ const Cart = () => {
         Your Cart
       </h2>
 
-      <p className="border-b border-b-rich-black-400 pb-2 font-semibold text-rich-black-400">
+      <p className="border-b border-b-rich-black-300 pb-2 font-semibold text-rich-black-100">
         {totalItems} Courses in Cart
       </p>
       {totalItems > 0 ? (

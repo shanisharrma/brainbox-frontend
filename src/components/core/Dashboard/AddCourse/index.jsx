@@ -12,7 +12,7 @@ const AddCourse = () => {
         </div>
       </div>
 
-      <div className="sticky top-10 hidden xl:block lg:w-[40%] h-fit bg-rich-black-400 border border-rich-black-200 text-rich-black-5 p-7 rounded-md">
+      <div className="sticky top-10 hidden lg:block lg:w-[40%] h-fit bg-rich-black-400 border border-rich-black-200 text-rich-black-5 p-7 rounded-md">
         <p className="text-xl mb-6">Course Upload Tips</p>
         <ul className="text-xs space-y-3">
           <li>Set the Course Price option or make it free.</li>

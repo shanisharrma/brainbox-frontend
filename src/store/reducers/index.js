@@ -5,6 +5,7 @@ import authReducer from "../slices/authSlice";
 import profileReducer from "../slices/profileSlice";
 import cartReducer from "../slices/cartSlice";
 import courseReducer from "../slices/courseSlice";
+import viewCourseReducer from "../slices/viewCourseSlice";
 
 // * configure redux-persist for auth slice
 const authPersistConfig = {
@@ -42,6 +43,7 @@ const rootReducer = combineReducers({
   profile: persistProfileReducer,
   cart: persistCartReducer,
   course: courseReducer,
+  viewCourse: viewCourseReducer,
 });
 
 export default rootReducer;

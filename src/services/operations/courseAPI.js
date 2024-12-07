@@ -98,6 +98,29 @@ export const getPublicSingleCourse = async (courseId) => {
   return result;
 };
 
+export const getViewCourseDetails = async (token, courseId) => {
+  const toastId = toast.loading("Loading...");
+  let result = null;
+  try {
+    const response = await apiConnector(
+      "GET",
+      `${COURSES_API}/${courseId}/view`,
+      null,
+      { Authorization: `Bearer ${token}` }
+    );
+
+    if (!response.success) {
+      throw new Error(response.message);
+    }
+
+    result = response.data;
+  } catch (error) {
+    toast.error(error.response.data.message);
+  }
+  toast.dismiss(toastId);
+  return result;
+};
+
 export const getEditableSingleCourse = async (token, courseId) => {
   const toastId = toast.loading("Loading...");
   let result = null;
@@ -390,8 +413,7 @@ export const allRatingsAndReviews = async () => {
       throw new Error(response.message);
     }
 
-    result = response.data;
-    toast.success(response.message);
+    result = response;
   } catch (error) {
     toast.error(error.response.data.message);
   }
@@ -428,4 +450,27 @@ export const getAllSuggestedTags = async (query) => {
   } catch (error) {
     toast.error(error.response.data.message);
   }
+};
+
+export const markLectureAsComplete = async (token, courseId, subsectionId) => {
+  const toastId = toast.loading("Loading...");
+  let result = null;
+  try {
+    const response = await apiConnector(
+      "PUT",
+      `${COURSES_API}/${courseId}/subsections/${subsectionId}`,
+      null,
+      { Authorization: `Bearer ${token}` }
+    );
+    if (!response.success) {
+      throw new Error(response.message);
+    }
+    result = response.data;
+    toast.success("Lecture Completed");
+  } catch (error) {
+    toast.error(error.response.data.message);
+    result = null;
+  }
+  toast.dismiss(toastId);
+  return result;
 };

@@ -99,7 +99,7 @@ const Navbar = () => {
             <NavLink to="/dashboard/cart" className="relative">
               <AiOutlineShoppingCart className="text-2xl text-rich-black-50" />
               {totalItems > 0 && (
-                <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-rich-black-300 text-center text-xs font-bold text-yellow-100">
+                <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-crimsonRed-50 text-center text-xs font-bold text-rich-black-5">
                   {totalItems}
                 </span>
               )}
